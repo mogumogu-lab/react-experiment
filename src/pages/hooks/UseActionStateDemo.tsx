@@ -1,6 +1,10 @@
 import { useActionState } from 'react'
 
-async function submitAction(prevState: any, formData: FormData) {
+type FormState =
+  | { error: string; success: false }
+  | { message: string; success: true }
+
+async function submitAction(_prevState: FormState, formData: FormData): Promise<FormState> {
   const name = formData.get('name') as string
 
   // Simulate async operation
@@ -14,7 +18,7 @@ async function submitAction(prevState: any, formData: FormData) {
 }
 
 export default function UseActionStateDemo() {
-  const [state, formAction, isPending] = useActionState(submitAction, { success: false })
+  const [state, formAction, isPending] = useActionState(submitAction, { error: '', success: false })
 
   return (
     <div className="space-y-6">
@@ -43,7 +47,7 @@ export default function UseActionStateDemo() {
         {state.success && state.message && (
           <p className="mt-4 text-green-400">{state.message}</p>
         )}
-        {state.error && (
+        {!state.success && state.error && (
           <p className="mt-4 text-red-400">{state.error}</p>
         )}
       </div>

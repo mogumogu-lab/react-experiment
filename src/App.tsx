@@ -1,22 +1,48 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
-import UseActionStateDemo from './pages/hooks/UseActionStateDemo'
-import UseCallbackDemo from './pages/hooks/UseCallbackDemo'
-import UseContextDemo from './pages/hooks/UseContextDemo'
-import UseDebugValueDemo from './pages/hooks/UseDebugValueDemo'
-import UseDeferredValueDemo from './pages/hooks/UseDeferredValueDemo'
-import UseEffectDemo from './pages/hooks/UseEffectDemo'
-import UseIdDemo from './pages/hooks/UseIdDemo'
-import UseImperativeHandleDemo from './pages/hooks/UseImperativeHandleDemo'
-import UseInsertionEffectDemo from './pages/hooks/UseInsertionEffectDemo'
-import UseLayoutEffectDemo from './pages/hooks/UseLayoutEffectDemo'
-import UseMemoDemo from './pages/hooks/UseMemoDemo'
-import UseOptimisticDemo from './pages/hooks/UseOptimisticDemo'
-import UseReducerDemo from './pages/hooks/UseReducerDemo'
-import UseRefDemo from './pages/hooks/UseRefDemo'
-import UseStateDemo from './pages/hooks/UseStateDemo'
-import UseSyncExternalStoreDemo from './pages/hooks/UseSyncExternalStoreDemo'
-import UseTransitionDemo from './pages/hooks/UseTransitionDemo'
+
+// React Hooks
+import UseActionStateDemo from './pages/react/hooks/UseActionStateDemo'
+import UseCallbackDemo from './pages/react/hooks/UseCallbackDemo'
+import UseContextDemo from './pages/react/hooks/UseContextDemo'
+import UseDebugValueDemo from './pages/react/hooks/UseDebugValueDemo'
+import UseDeferredValueDemo from './pages/react/hooks/UseDeferredValueDemo'
+import UseEffectDemo from './pages/react/hooks/UseEffectDemo'
+import UseIdDemo from './pages/react/hooks/UseIdDemo'
+import UseImperativeHandleDemo from './pages/react/hooks/UseImperativeHandleDemo'
+import UseInsertionEffectDemo from './pages/react/hooks/UseInsertionEffectDemo'
+import UseLayoutEffectDemo from './pages/react/hooks/UseLayoutEffectDemo'
+import UseMemoDemo from './pages/react/hooks/UseMemoDemo'
+import UseOptimisticDemo from './pages/react/hooks/UseOptimisticDemo'
+import UseReducerDemo from './pages/react/hooks/UseReducerDemo'
+import UseRefDemo from './pages/react/hooks/UseRefDemo'
+import UseStateDemo from './pages/react/hooks/UseStateDemo'
+import UseSyncExternalStoreDemo from './pages/react/hooks/UseSyncExternalStoreDemo'
+import UseTransitionDemo from './pages/react/hooks/UseTransitionDemo'
+
+// React Components
+import FragmentDemo from './pages/react/components/FragmentDemo'
+import ProfilerDemo from './pages/react/components/ProfilerDemo'
+import StrictModeDemo from './pages/react/components/StrictModeDemo'
+import SuspenseDemo from './pages/react/components/SuspenseDemo'
+import ActivityDemo from './pages/react/components/ActivityDemo'
+import ViewTransitionDemo from './pages/react/components/ViewTransitionDemo'
+
+// React APIs
+import ActDemo from './pages/react/apis/ActDemo'
+import CacheDemo from './pages/react/apis/CacheDemo'
+import CaptureOwnerStackDemo from './pages/react/apis/CaptureOwnerStackDemo'
+import CreateContextDemo from './pages/react/apis/CreateContextDemo'
+import LazyDemo from './pages/react/apis/LazyDemo'
+import MemoDemo from './pages/react/apis/MemoDemo'
+import StartTransitionDemo from './pages/react/apis/StartTransitionDemo'
+import UseDemo from './pages/react/apis/UseDemo'
+import ExperimentalTaintObjectReferenceDemo from './pages/react/apis/ExperimentalTaintObjectReferenceDemo'
+import ExperimentalTaintUniqueValueDemo from './pages/react/apis/ExperimentalTaintUniqueValueDemo'
+import UnstableAddTransitionTypeDemo from './pages/react/apis/UnstableAddTransitionTypeDemo'
+
+// React-DOM Hooks
+import UseFormStatusDemo from './pages/react-dom/hooks/UseFormStatusDemo'
 
 function App() {
   return (
@@ -31,23 +57,49 @@ function App() {
         <main className="max-w-7xl mx-auto p-8">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/hooks/use-action-state" element={<UseActionStateDemo />} />
-            <Route path="/hooks/use-callback" element={<UseCallbackDemo />} />
-            <Route path="/hooks/use-context" element={<UseContextDemo />} />
-            <Route path="/hooks/use-debug-value" element={<UseDebugValueDemo />} />
-            <Route path="/hooks/use-deferred-value" element={<UseDeferredValueDemo />} />
-            <Route path="/hooks/use-effect" element={<UseEffectDemo />} />
-            <Route path="/hooks/use-id" element={<UseIdDemo />} />
-            <Route path="/hooks/use-imperative-handle" element={<UseImperativeHandleDemo />} />
-            <Route path="/hooks/use-insertion-effect" element={<UseInsertionEffectDemo />} />
-            <Route path="/hooks/use-layout-effect" element={<UseLayoutEffectDemo />} />
-            <Route path="/hooks/use-memo" element={<UseMemoDemo />} />
-            <Route path="/hooks/use-optimistic" element={<UseOptimisticDemo />} />
-            <Route path="/hooks/use-reducer" element={<UseReducerDemo />} />
-            <Route path="/hooks/use-ref" element={<UseRefDemo />} />
-            <Route path="/hooks/use-state" element={<UseStateDemo />} />
-            <Route path="/hooks/use-sync-external-store" element={<UseSyncExternalStoreDemo />} />
-            <Route path="/hooks/use-transition" element={<UseTransitionDemo />} />
+
+            {/* React Hooks */}
+            <Route path="/react/hooks/use-action-state" element={<UseActionStateDemo />} />
+            <Route path="/react/hooks/use-callback" element={<UseCallbackDemo />} />
+            <Route path="/react/hooks/use-context" element={<UseContextDemo />} />
+            <Route path="/react/hooks/use-debug-value" element={<UseDebugValueDemo />} />
+            <Route path="/react/hooks/use-deferred-value" element={<UseDeferredValueDemo />} />
+            <Route path="/react/hooks/use-effect" element={<UseEffectDemo />} />
+            <Route path="/react/hooks/use-id" element={<UseIdDemo />} />
+            <Route path="/react/hooks/use-imperative-handle" element={<UseImperativeHandleDemo />} />
+            <Route path="/react/hooks/use-insertion-effect" element={<UseInsertionEffectDemo />} />
+            <Route path="/react/hooks/use-layout-effect" element={<UseLayoutEffectDemo />} />
+            <Route path="/react/hooks/use-memo" element={<UseMemoDemo />} />
+            <Route path="/react/hooks/use-optimistic" element={<UseOptimisticDemo />} />
+            <Route path="/react/hooks/use-reducer" element={<UseReducerDemo />} />
+            <Route path="/react/hooks/use-ref" element={<UseRefDemo />} />
+            <Route path="/react/hooks/use-state" element={<UseStateDemo />} />
+            <Route path="/react/hooks/use-sync-external-store" element={<UseSyncExternalStoreDemo />} />
+            <Route path="/react/hooks/use-transition" element={<UseTransitionDemo />} />
+
+            {/* React Components */}
+            <Route path="/react/components/fragment" element={<FragmentDemo />} />
+            <Route path="/react/components/profiler" element={<ProfilerDemo />} />
+            <Route path="/react/components/strict-mode" element={<StrictModeDemo />} />
+            <Route path="/react/components/suspense" element={<SuspenseDemo />} />
+            <Route path="/react/components/activity" element={<ActivityDemo />} />
+            <Route path="/react/components/view-transition" element={<ViewTransitionDemo />} />
+
+            {/* React APIs */}
+            <Route path="/react/apis/act" element={<ActDemo />} />
+            <Route path="/react/apis/cache" element={<CacheDemo />} />
+            <Route path="/react/apis/capture-owner-stack" element={<CaptureOwnerStackDemo />} />
+            <Route path="/react/apis/create-context" element={<CreateContextDemo />} />
+            <Route path="/react/apis/lazy" element={<LazyDemo />} />
+            <Route path="/react/apis/memo" element={<MemoDemo />} />
+            <Route path="/react/apis/start-transition" element={<StartTransitionDemo />} />
+            <Route path="/react/apis/use" element={<UseDemo />} />
+            <Route path="/react/apis/experimental-taint-object-reference" element={<ExperimentalTaintObjectReferenceDemo />} />
+            <Route path="/react/apis/experimental-taint-unique-value" element={<ExperimentalTaintUniqueValueDemo />} />
+            <Route path="/react/apis/unstable-add-transition-type" element={<UnstableAddTransitionTypeDemo />} />
+
+            {/* React-DOM Hooks */}
+            <Route path="/react-dom/hooks/use-form-status" element={<UseFormStatusDemo />} />
           </Routes>
         </main>
       </div>

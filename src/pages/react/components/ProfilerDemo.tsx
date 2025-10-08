@@ -1,19 +1,98 @@
-import { Profiler, useState, type ProfilerOnRenderCallback } from 'react'
+import { Profiler, useState, useMemo, useRef, type ProfilerOnRenderCallback } from 'react'
 
-export default function ProfilerDemo() {
-  const [count, setCount] = useState(0)
-  const [slowCount, setSlowCount] = useState(0)
+// Separate component to hold logs - prevents parent re-render from affecting Profiled components
+function PerformanceLogs({
+  onLog
+}: {
+  onLog: (callback: ProfilerOnRenderCallback) => void
+}) {
   const [logs, setLogs] = useState<string[]>([])
 
-  // Profiler callback
-  const onRenderCallback: ProfilerOnRenderCallback = (
-    id,
-    phase,
-    actualDuration,
-    baseDuration
-  ) => {
-    const log = `[${id}] ${phase}: ${actualDuration.toFixed(2)}ms (base: ${baseDuration.toFixed(2)}ms)`
-    setLogs(prev => [...prev.slice(-9), log]) // Keep last 10 logs
+  // Register callback to parent - memoized so it only runs once
+  useMemo(() => {
+    const callback: ProfilerOnRenderCallback = (id, phase, actualDuration, baseDuration) => {
+      const log = `[${id}] ${phase}: ${actualDuration.toFixed(2)}ms (base: ${baseDuration.toFixed(2)}ms)`
+      setLogs(prev => [...prev.slice(-9), log])
+    }
+    onLog(callback)
+  }, [onLog])
+
+  return (
+    <section className="bg-gray-800 p-6 rounded-lg">
+      <h2 className="text-xl font-semibold mb-4 text-blue-400">Performance Logs</h2>
+      <div className="bg-gray-900 p-4 rounded font-mono text-sm space-y-1 max-h-64 overflow-y-auto">
+        {logs.length === 0 ? (
+          <p className="text-gray-500">Click buttons above to see render times...</p>
+        ) : (
+          logs.map((log, i) => (
+            <div key={i} className="text-green-400">{log}</div>
+          ))
+        )}
+      </div>
+      <button
+        onClick={() => setLogs([])}
+        className="mt-4 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-sm"
+      >
+        Clear Logs
+      </button>
+    </section>
+  )
+}
+
+// Isolated component to prevent cross-component re-renders
+function FastCounter({ onRender }: { onRender: ProfilerOnRenderCallback }) {
+  const [count, setCount] = useState(0)
+
+  return (
+    <section className="bg-gray-800 p-6 rounded-lg">
+      <h2 className="text-xl font-semibold mb-4 text-blue-400">Fast Component</h2>
+      <Profiler id="fast-component" onRender={onRender}>
+        <div className="space-y-4">
+          <p className="text-gray-300">Count: {count}</p>
+          <button
+            onClick={() => setCount(c => c + 1)}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded"
+          >
+            Increment Fast
+          </button>
+        </div>
+      </Profiler>
+    </section>
+  )
+}
+
+// Isolated component to prevent cross-component re-renders
+function SlowCounter({ onRender }: { onRender: ProfilerOnRenderCallback }) {
+  const [slowCount, setSlowCount] = useState(0)
+
+  return (
+    <section className="bg-gray-800 p-6 rounded-lg">
+      <h2 className="text-xl font-semibold mb-4 text-blue-400">Slow Component</h2>
+      <Profiler id="slow-component" onRender={onRender}>
+        <div className="space-y-4">
+          <SlowComponent count={slowCount} />
+          <button
+            onClick={() => setSlowCount(c => c + 1)}
+            className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded"
+          >
+            Increment Slow
+          </button>
+        </div>
+      </Profiler>
+    </section>
+  )
+}
+
+export default function ProfilerDemo() {
+  // Use ref to persist callback across re-renders
+  const callbackRef = useRef<ProfilerOnRenderCallback>(() => {})
+
+  const registerCallback = (callback: ProfilerOnRenderCallback) => {
+    callbackRef.current = callback
+  }
+
+  const onRenderCallback: ProfilerOnRenderCallback = (...args) => {
+    callbackRef.current(...args)
   }
 
   return (
@@ -26,54 +105,9 @@ export default function ProfilerDemo() {
       </div>
 
       <div className="space-y-6">
-        <section className="bg-gray-800 p-6 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4 text-blue-400">Fast Component</h2>
-          <Profiler id="fast-component" onRender={onRenderCallback}>
-            <div className="space-y-4">
-              <p className="text-gray-300">Count: {count}</p>
-              <button
-                onClick={() => setCount(c => c + 1)}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded"
-              >
-                Increment Fast
-              </button>
-            </div>
-          </Profiler>
-        </section>
-
-        <section className="bg-gray-800 p-6 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4 text-blue-400">Slow Component</h2>
-          <Profiler id="slow-component" onRender={onRenderCallback}>
-            <div className="space-y-4">
-              <SlowComponent count={slowCount} />
-              <button
-                onClick={() => setSlowCount(c => c + 1)}
-                className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded"
-              >
-                Increment Slow
-              </button>
-            </div>
-          </Profiler>
-        </section>
-
-        <section className="bg-gray-800 p-6 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4 text-blue-400">Performance Logs</h2>
-          <div className="bg-gray-900 p-4 rounded font-mono text-sm space-y-1 max-h-64 overflow-y-auto">
-            {logs.length === 0 ? (
-              <p className="text-gray-500">Click buttons above to see render times...</p>
-            ) : (
-              logs.map((log, i) => (
-                <div key={i} className="text-green-400">{log}</div>
-              ))
-            )}
-          </div>
-          <button
-            onClick={() => setLogs([])}
-            className="mt-4 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-sm"
-          >
-            Clear Logs
-          </button>
-        </section>
+        <FastCounter onRender={onRenderCallback} />
+        <SlowCounter onRender={onRenderCallback} />
+        <PerformanceLogs onLog={registerCallback} />
       </div>
 
       <div className="bg-gray-800/50 p-4 rounded border border-gray-700">
@@ -84,6 +118,7 @@ export default function ProfilerDemo() {
           <li>phase can be "mount" or "update"</li>
           <li>actualDuration: time spent rendering this update</li>
           <li>baseDuration: estimated time to render entire tree without memoization</li>
+          <li>Logs are stored in separate component to prevent re-rendering profiled components</li>
           <li>Use in development to identify performance bottlenecks</li>
         </ul>
       </div>

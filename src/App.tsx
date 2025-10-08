@@ -80,7 +80,7 @@ function App() {
       <div className="min-h-screen bg-gray-900 text-white">
         <nav className="bg-gray-800 border-b border-gray-700 px-6 py-4">
           <Link to="/" className="text-2xl font-bold text-blue-400 hover:text-blue-300">
-            React Hooks Lab
+            React Lab
           </Link>
         </nav>
 

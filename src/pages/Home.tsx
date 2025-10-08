@@ -65,6 +65,59 @@ const apiSections = [
         items: [
           { name: 'useFormStatus', path: '/react-dom/hooks/use-form-status', description: 'Get form submission status' },
         ]
+      },
+      {
+        title: 'Components',
+        items: [
+          { name: '<div>', path: '/react-dom/components/div', description: 'Basic container element' },
+          { name: '<form>', path: '/react-dom/components/form', description: 'Form element' },
+          { name: '<input>', path: '/react-dom/components/input', description: 'Input element' },
+          { name: '<option>', path: '/react-dom/components/option', description: 'Option element for select' },
+          { name: '<progress>', path: '/react-dom/components/progress', description: 'Progress bar element' },
+          { name: '<select>', path: '/react-dom/components/select', description: 'Select dropdown element' },
+          { name: '<textarea>', path: '/react-dom/components/textarea', description: 'Multi-line text input' },
+          { name: '<link>', path: '/react-dom/components/link', description: 'External resource link' },
+          { name: '<meta>', path: '/react-dom/components/meta', description: 'Metadata element' },
+          { name: '<script>', path: '/react-dom/components/script', description: 'Script element' },
+          { name: '<style>', path: '/react-dom/components/style', description: 'Style element' },
+          { name: '<title>', path: '/react-dom/components/title', description: 'Document title element' },
+        ]
+      },
+      {
+        title: 'API',
+        items: [
+          { name: 'createPortal', path: '/react-dom/api/create-portal', description: 'Render outside parent hierarchy' },
+          { name: 'flushSync', path: '/react-dom/api/flush-sync', description: 'Force synchronous updates' },
+          { name: 'preconnect', path: '/react-dom/api/resource-hints', description: 'Preconnect to server' },
+          { name: 'prefetchDNS', path: '/react-dom/api/resource-hints', description: 'Prefetch DNS lookup' },
+          { name: 'preinit', path: '/react-dom/api/resource-hints', description: 'Preinit resources' },
+          { name: 'preinitModule', path: '/react-dom/api/resource-hints', description: 'Preinit ES modules' },
+          { name: 'preload', path: '/react-dom/api/resource-hints', description: 'Preload resources' },
+          { name: 'preloadModule', path: '/react-dom/api/resource-hints', description: 'Preload ES modules' },
+        ]
+      },
+      {
+        title: 'Client API',
+        items: [
+          { name: 'createRoot', path: '/react-dom/client/create-root', description: 'Create React root' },
+          { name: 'hydrateRoot', path: '/react-dom/client/hydrate-root', description: 'Hydrate server HTML' },
+        ]
+      },
+      {
+        title: 'Server API',
+        items: [
+          { name: 'renderToString', path: '/react-dom/server/server-apis', description: 'Render to HTML string' },
+          { name: 'renderToStaticMarkup', path: '/react-dom/server/server-apis', description: 'Render to static HTML' },
+          { name: 'renderToPipeableStream', path: '/react-dom/server/server-apis', description: 'Stream render (Node.js)' },
+          { name: 'renderToReadableStream', path: '/react-dom/server/server-apis', description: 'Stream render (Web)' },
+        ]
+      },
+      {
+        title: 'Static API',
+        items: [
+          { name: 'prerender', path: '/react-dom/static/prerender', description: 'Prerender to static HTML' },
+          { name: 'prerenderToNodeStream', path: '/react-dom/static/prerender-to-node-stream', description: 'Stream prerender' },
+        ]
       }
     ]
   }

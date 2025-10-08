@@ -44,6 +44,36 @@ import UnstableAddTransitionTypeDemo from './pages/react/apis/UnstableAddTransit
 // React-DOM Hooks
 import UseFormStatusDemo from './pages/react-dom/hooks/UseFormStatusDemo'
 
+// React-DOM Components
+import DivDemo from './pages/react-dom/components/DivDemo'
+import FormDemo from './pages/react-dom/components/FormDemo'
+import InputDemo from './pages/react-dom/components/InputDemo'
+import OptionDemo from './pages/react-dom/components/OptionDemo'
+import ProgressDemo from './pages/react-dom/components/ProgressDemo'
+import SelectDemo from './pages/react-dom/components/SelectDemo'
+import TextareaDemo from './pages/react-dom/components/TextareaDemo'
+import LinkDemo from './pages/react-dom/components/LinkDemo'
+import MetaDemo from './pages/react-dom/components/MetaDemo'
+import ScriptDemo from './pages/react-dom/components/ScriptDemo'
+import StyleDemo from './pages/react-dom/components/StyleDemo'
+import TitleDemo from './pages/react-dom/components/TitleDemo'
+
+// React-DOM API
+import CreatePortalDemo from './pages/react-dom/api/CreatePortalDemo'
+import FlushSyncDemo from './pages/react-dom/api/FlushSyncDemo'
+import ResourceHintsDemo from './pages/react-dom/api/ResourceHintsDemo'
+
+// React-DOM Client API
+import CreateRootDemo from './pages/react-dom/client/CreateRootDemo'
+import HydrateRootDemo from './pages/react-dom/client/HydrateRootDemo'
+
+// React-DOM Server API
+import ServerAPIsDemo from './pages/react-dom/server/ServerAPIsDemo'
+
+// React-DOM Static API
+import PrerenderDemo from './pages/react-dom/static/PrerenderDemo'
+import PrerenderToNodeStreamDemo from './pages/react-dom/static/PrerenderToNodeStreamDemo'
+
 function App() {
   return (
     <BrowserRouter>
@@ -100,6 +130,36 @@ function App() {
 
             {/* React-DOM Hooks */}
             <Route path="/react-dom/hooks/use-form-status" element={<UseFormStatusDemo />} />
+
+            {/* React-DOM Components */}
+            <Route path="/react-dom/components/div" element={<DivDemo />} />
+            <Route path="/react-dom/components/form" element={<FormDemo />} />
+            <Route path="/react-dom/components/input" element={<InputDemo />} />
+            <Route path="/react-dom/components/option" element={<OptionDemo />} />
+            <Route path="/react-dom/components/progress" element={<ProgressDemo />} />
+            <Route path="/react-dom/components/select" element={<SelectDemo />} />
+            <Route path="/react-dom/components/textarea" element={<TextareaDemo />} />
+            <Route path="/react-dom/components/link" element={<LinkDemo />} />
+            <Route path="/react-dom/components/meta" element={<MetaDemo />} />
+            <Route path="/react-dom/components/script" element={<ScriptDemo />} />
+            <Route path="/react-dom/components/style" element={<StyleDemo />} />
+            <Route path="/react-dom/components/title" element={<TitleDemo />} />
+
+            {/* React-DOM API */}
+            <Route path="/react-dom/api/create-portal" element={<CreatePortalDemo />} />
+            <Route path="/react-dom/api/flush-sync" element={<FlushSyncDemo />} />
+            <Route path="/react-dom/api/resource-hints" element={<ResourceHintsDemo />} />
+
+            {/* React-DOM Client API */}
+            <Route path="/react-dom/client/create-root" element={<CreateRootDemo />} />
+            <Route path="/react-dom/client/hydrate-root" element={<HydrateRootDemo />} />
+
+            {/* React-DOM Server API */}
+            <Route path="/react-dom/server/server-apis" element={<ServerAPIsDemo />} />
+
+            {/* React-DOM Static API */}
+            <Route path="/react-dom/static/prerender" element={<PrerenderDemo />} />
+            <Route path="/react-dom/static/prerender-to-node-stream" element={<PrerenderToNodeStreamDemo />} />
           </Routes>
         </main>
       </div>
